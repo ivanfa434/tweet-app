@@ -2,6 +2,7 @@ import { BASE_URL } from "@/utils/api";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 interface Payload {
   firstName: string;
@@ -21,11 +22,11 @@ const useRegister = () => {
       });
     },
     onSuccess: () => {
-      alert("Register Berhasil");
+      toast.success("Register Berhasil");
       router.push("/login");
     },
     onError: () => {
-      alert("Register gagal");
+      toast.error("Register gagal");
     },
   });
   //   const [isLoading, setIsLoading] = useState(false);
