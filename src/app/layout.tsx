@@ -4,7 +4,10 @@ import "./globals.css";
 import ReactQueryProviders from "@/providers/ReactQueryProvider";
 import StoreProvider from "@/providers/StoreProvider";
 import AuthProvider from "@/providers/AuthProvider";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
+import { Navbar } from "@/components/Navbar";
+import { ThemeProvider } from "next-themes";
+import { Footer } from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,12 +34,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <StoreProvider>
-          <AuthProvider>
-            <ReactQueryProviders>{children}</ReactQueryProviders>
-          </AuthProvider>
-        </StoreProvider>
-        <Toaster richColors/>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          <ReactQueryProviders>{children}</ReactQueryProviders>
+          <Footer/>
+        </ThemeProvider>
       </body>
     </html>
   );
